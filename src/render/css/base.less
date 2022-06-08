@@ -1,0 +1,78 @@
+@import "./variable";
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: transparent;
+}
+
+body {
+  background-color: transparent;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+textarea {
+  border: none;
+  outline: none;
+}
+
+// 基础的 CSS 设置
+* {
+  // width 和 height 属性包括内容，内边距和边框，但不包括外边距。
+  box-sizing: border-box;
+}
+
+// 当用户的鼠标点击某个元素时
+.router-link-active, .chooseScript {
+  background-color: @chooseColor;
+}
+
+// 旋转动画
+// 创建一个名为 spin 的动画
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 绘制 spin 动画的每一帧
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// spin 动画应用到 class
+.rotateEast {
+  animation: spin 2s linear infinite;
+}
+
+// 虚拟窗口背景层，窗口其他区域变暗，并且不可点击
+.winBackground {
+  background-color: #CACACA99;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: @windowBGZI;
+}
+
+// 以黑点作为 div 背景
+.blackPoint {
+  background-image: url("../../../public/blackPoint.svg");
+  background-repeat: no-repeat;
+}

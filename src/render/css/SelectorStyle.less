@@ -1,0 +1,108 @@
+/*
+选择器通用样式
+
+@author: aszswaz
+@date: 2022-05-24 11:49:29
+@IDE: WebStorm
+*/
+
+@import "./variable";
+
+// 边框弧度
+@border-radius: 20px;
+
+// 选择器
+.selector {
+  position: absolute;
+  @width: 1000px;
+  @height: 800px;
+  width: @width;
+  height: @height;
+  z-index: @windowBGZI;
+  top: calc(50vh - @height / 2);
+  left: calc(50vw - @width / 2);
+  border-radius: @border-radius;
+  overflow: hidden;
+  // 弹性布局，作用于子元素的
+  display: flex;
+  // 弹性布局，子元素横向布局
+  flex-direction: column;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// 窗格标题
+.selectorTitle {
+  width: 100%;
+  height: 40px;
+  background-color: @backgroundColor;
+  text-align: center;
+  line-height: 40px;
+  border-radius: @border-radius;
+  margin-bottom: 10px;
+  border: @crudeBorder;
+}
+
+// 选择器窗格主体
+.selectorContent {
+  display: block;
+  height: calc(100% - 50px - 80px);
+  width: 100%;
+}
+
+// 脚本名称列表
+.scriptNames {
+  display: inline-block;
+  height: 100%;
+  width: 250px;
+  border: @crudeBorder;
+  border-radius: @border-radius;
+  // 调整主軸，列表竖着排列
+  flex-direction: column;
+  overflow: hidden;
+  background-color: @backgroundColor;
+}
+
+// 脚本预览窗格
+.preview {
+  float: right;
+  display: inline-block;
+  width: calc(100% - 250px - 10px);
+  height: 100%;
+  border: @crudeBorder;
+  margin-left: 10px;
+  border-radius: @border-radius;
+  white-space: pre;
+  background-color: @backgroundColor;
+}
+
+// 脚本名称
+.scriptName {
+  width: 100%;
+  height: 40px;
+  border: none;
+}
+
+// 鼠标在元素上徘徊，或者用户点击了这个元素
+.cSelection, .templateName:hover {
+  background-color: @chooseColor;
+}
+
+// 代码展示区域
+.previewContent {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+// 操作按钮
+.actionButtons {
+  background-color: @backgroundColor;
+  width: 100%;
+  height: 70px;
+  margin-top: 10px;
+  border: @crudeBorder;
+  border-radius: @border-radius;
+}

@@ -1,0 +1,103 @@
+#!/bin/zsh
+
+cd "$(dirname $0)"
+
+source ./set-proxy.sh
+
+# 输出帮助信息
+function help() {
+    echo -e "用法: request [-r repeat_times] [url]
+用 curl 通过代理服务器，向指定的 url 发送请求，请求总共发送 concurrency * repeat_times 次"
+    echo ""
+    format="%-5s %-20s %s\n"
+    printf "$format" "-h" "--help" "输出帮助信息"
+    printf "$format" "-r" "--repeat-times" "每一条 url 重复请求 N 次"
+    printf "$format" "-H" "--header" "设置请求头"
+    printf "$format" "-d" "--data" "设置请求体"
+    printf "$format" "" "--concurrency" "同时发送 N 条请求，也就是同时运行 N 个 curl"
+    echo ""
+    echo -e "\033[93m注意：脚本不会对传入的 URL 列表做任何的去重工作，比如：request -r 100 https://www.example.com https://www.example.com 那么会向 www.example.com 发送总计 200 次请求\033[0m"
+}
+
+# 每个 url 重复请求次数，最少请求一次
+REPEAT_TIMES=1
+# HTTP 请求方法
+METHOD="GET"
+# 请求头
+HEADERS=()
+# 请求体
+BODY=()
+# 需要请求的 url 队列
+URLS=()
+# 并发请求，同时运行 N 个 curl 进程
+CONCURRENCY=1
+
+IFS=$"\n"
+# 解析传入参数，shift 的作用是移除 $@ 的第一个元素
+while [[ $1 != "" ]]; do
+    case "$1" in
+    -h | --help)
+        help
+        exit 0
+        ;;
+    -r | --repeat-times)
+        REPEAT_TIMES="$2"
+        shift
+        ;;
+    -m | --method)
+        METHOD="$2"
+        shift
+        ;;
+    -H | --header)
+        HEADERS+=(-H "$2")
+        shift
+        ;;
+    -d | --data)
+        BODY=(-d "$2")
+        shift
+        ;;
+    --concurrency)
+        CONCURRENCY="$2"
+        shift
+        ;;
+    http*)
+        URLS+=("$1")
+        ;;
+    *)
+        echo -e "\033[91m未知的选项：${option}\033[0m"
+        exit 1
+        ;;
+    esac
+    shift
+done
+unset option i IFS
+
+# 检查选项，对于没有指定的选项，填充默认值
+if [[ ${#URLS} == 0 ]]; then
+    URLS=("http://192.168.0.119:8080/example.html")
+fi
+
+# 拼接请求头到 curl 指令
+for header in ${HEADERS}; do
+    curl_args+=("-H" "$header")
+done
+unset header
+
+# 填充 URL
+for index in $(seq $(($REPEAT_TIMES - 1))); do
+    URLS+=("${URLS[1]}")
+done
+
+echo "即将执行 $(($CONCURRENCY * ${#URLS})) 次请求"
+if [[ $CONCURRENCY == 1 ]]; then
+    curl -v --disable -s -X${METHOD} $HEADERS $BODY $URLS
+else
+    start_time=$(date "+%s")
+    for index in $(seq $CONCURRENCY); do
+        curl -v --disable -s -X${METHOD} $HEADERS $BODY $URLS >>/dev/null 2>&1 &
+    done
+    unset index
+    wait
+    end_time=$(date "+%s")
+    echo "用时:" $(($end_time - $start_time)) "s"
+fi

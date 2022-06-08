@@ -1,0 +1,62 @@
+@import "./variable.less";
+
+/*
+请求明细和响应明细窗格的公用样式
+ */
+
+// 一级条目
+.entry01 {
+  height: 30px;
+  line-height: 30px;
+  border-left: 5px solid black;
+  padding-left: 5px;
+  font-weight: bold;
+  font-size: 20px;
+
+  &:not(&:first-child) {
+    border-top: @thinBorder;
+    margin-top: 10px;
+  }
+}
+
+// 二级条目
+.entry02 {
+  // 文本加粗
+  font-weight: bold;
+  width: 250px;
+}
+
+// 条目的值
+.value {
+  padding-left: 10px;
+}
+
+// 请求的基本信息
+.entryBody {
+  width: 100%;
+  padding-left: 5px;
+  margin-top: 5px;
+
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+
+    tr:not(tr:last-child) {
+      border-bottom: 1px solid lightgray;
+    }
+
+    td {
+      word-wrap: break-word;
+      word-break: break-all;
+      border-right: 1px solid lightgray;
+    }
+  }
+}
+
+// 条目中的操作按钮
+.entryButton {
+  margin-left: 10px;
+  width: 60px;
+  height: 25px;
+}

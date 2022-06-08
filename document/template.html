@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--suppress HttpUrlsUsage -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="generator" content="pandoc"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+    <style>
+        /*代码框*/
+        .sourceCode {
+            background-color: #F8F8F8;
+        }
+
+        /*代码关键字*/
+        .kw, .cf {
+            color: #0003B3;
+        }
+
+        /*注释*/
+        .co {
+            color: #8C8C8C;
+        }
+
+        /*字符串、正则表达式*/
+        .st, .ss, .sc {
+            color: #067D17;
+        }
+
+        /*函数*/
+        .fu {
+            color: #00627A;
+        }
+
+        /*对象属性*/
+        .dt, .at {
+            color: #830091;
+        }
+
+        /*数字常量*/
+        .dv {
+            color: #1750EB;
+        }
+    </style>
+    <title>$title$</title>
+</head>
+<body style="padding: 0 40px;">
+
+<div style="width: 100%; height: 100%;">
+    $body$
+</div>
+
+<script>
+    const {shell} = require("electron");
+
+    window.onload = _ => {
+        const links = document.querySelectorAll("a[href]")
+        links.forEach(item => {
+            // 解析 url
+            const url = new URL(item.href)
+
+            if ((url.protocol === "http:" || url.protocol === "https:") && url.hostname !== "localhost") {
+                // 是不能信任的网站地址，通过浏览器打开
+                item.onclick = e => {
+                    e.preventDefault()
+                    shell.openExternal(item.href)
+                }
+            } else if (url.protocol === "file:" || (url.protocol === "http:" && url.hostname === "localhost")) {
+                // 是本地文件地址或本机 web 服务地址
+                if (url.pathname !== window.location.pathname) {
+                    item.target = "_blank"
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

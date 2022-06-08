@@ -1,0 +1,66 @@
+/*
+element-plus 框架的样式
+
+@author: aszswaz
+@date: 2022-05-27 11:32:19
+@IDE: WebStorm
+*/
+
+@import "./variable";
+
+// element-plus 的主色调是蓝色，与本应用的主色调不符合，需要调整该框架的颜色 CSS 变量来配合程序主色调
+* {
+  // 文本框聚焦时边框颜色
+  --el-input-focus-border: black;
+  // 输入框背景色
+  --el-input-bg-color: white;
+
+  // 设置单选按钮和多选按钮
+  --el-checkbox-checked-bg-color: #8C8C8C;
+  --el-checkbox-checked-input-border-color: #8C8C8C !important;
+  --el-checkbox-input-border-color-hover: black !important;
+  --el-checkbox-button-checked-border-color: #8C8C8C !important;
+  --el-checkbox-text-color: black !important;
+  --el-checkbox-checked-text-color: black;
+  --el-checkbox-button-checked-bg-color: @chooseColor;
+  --el-color-primary: var(--el-button-text-color,var(--el-text-color-regular));
+  --el-checkbox-button-checked-text-color: var(--el-button-text-color,var(--el-text-color-regular));
+  --el-color-primary-light-7: var(--el-checkbox-button-checked-border-color);
+}
+
+// 覆盖 el-button 样式变量
+.el-button {
+  --el-button-hover-text-color: var(--el-button-text-color);
+  --el-button-hover-bg-color: var(--el-button-bg-color);
+  --el-button-hover-border-color: var(--el-button-border-color);
+  --el-button-active-border-color: black;
+}
+
+// element-plus 框架消息弹窗样式
+.elMessage {
+  // 通过变量覆盖的方式，修改文字颜色
+  --el-message-text-color: black;
+  background-color: white;
+  border: @crudeBorder;
+}
+
+// 大按钮
+.el-button--large {
+  --el-button-size: @elButtonWidth;
+}
+
+// 分页按钮
+.el-pagination {
+  --el-pagination-button-bg-color: #FFFFFF;
+
+  // 被禁用的分页按钮
+  .btn-prev:disabled, .btn-next:disabled {
+    background-color: #FFFFFF !important;
+  }
+
+  // 当前页的按钮
+  .is-active {
+    border: @thinBorder;
+    color: var(--el-input-text-color,var(--el-text-color-regular)) !important;
+  }
+}

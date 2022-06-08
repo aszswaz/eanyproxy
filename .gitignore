@@ -1,0 +1,32 @@
+# JetBrains
+/.idea
+/*.iml
+
+# nodejs
+/node_modules
+/package-lock.json
+/yarn.lock
+
+# TypeScript
+*.d.ts
+
+# python
+venv
+__pycache__
+
+# builder
+/dist
+/app
+/cache
+
+# test
+/ignore
+/eanyproxy
+*.xlsx
+simple-server/
+
+# vscode
+/typings.json
+
+# 新代码的临时文件，为了替换旧代码而存在
+*.new.*
