@@ -52,6 +52,6 @@ config.templateDir = path.join(config.applicationDir, "templates")
 config.cache = path.join(app.getPath("temp"), app.getName())
 config.maxTextLength = 100 * 1000
 config.anyproxySettingsFile = path.join(config.applicationDir, "anyproxy-settings.json")
-config.documentHome = path.join(__dirname, "../../../dist/documents/home.html")
+config.documentHome = path.join(__dirname, "../../../dist/documents/index.html")
 
 module.exports = config

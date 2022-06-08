@@ -11,7 +11,7 @@
     "build-linux": "node builder/builder.js -c -p linux",
     "build-win": "node builder/builder.js -c -p win32",
     "build-mac": "node builder/builder.js -c -p mac",
-    "build-doc": "node ./document/ToDoc.js"
+    "build-doc": "node ./docs/ToDoc.js"
   },
   "repository": {
     "type": "git",
