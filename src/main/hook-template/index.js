@@ -15,7 +15,6 @@ const ipc = require("../config/IPCCommands")
 const path = require("path");
 const config = require("../config")
 const Store = require("../store")
-const {store: magStore} = require("../config/MagicalValue")
 const {createHash} = require("crypto")
 
 // 内部 HOOK 脚本
