@@ -10,13 +10,19 @@
 $ npm install
 ```
 
-安装过程中，需要从 github 下载 electron，肯能会下载超时，可以通过设置代理进行下载：
+安装过程中，需要从 github 下载 electron，肯定会下载超时，可以通过以下方式解决：
 
 ```bash
+# 设置国外网络代理
 $ npm config set proxy 'https://www.example.com/'
+# 或者使用国内华为云的软件镜像
+$ npm config set registry https://repo.huaweicloud.com/repository/npm/
+$ npm cache clean -f
+# 设置 electron 软件镜像
+$ npm config set ELECTRON_MIRROR https://repo.huaweicloud.com/electron/
 ```
 
-或者参考[官方文档](https://www.electronjs.org/zh/docs/latest/tutorial/installation)进行解决
+或者参考[官方文档](https://www.electronjs.org/zh/docs/latest/tutorial/installation)
 
 依赖安装完毕以后，通过以下命令运行项目：
 
