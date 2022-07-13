@@ -35,11 +35,11 @@ $ npm run start-vuetool
 $ npm run start-electron
 ```
 
-项目启动时会打开 debug 功能，在 chrome 浏览器地址栏中输入：`chrome://inspect/#devices`，点击 configure，查看是否有 localhost:9229，如果沒有则新增，点击“完成”，页面会出现：`electron/js2c/browser_init`，单击“inspect” 即可打开 debug 控制台。<font color="yellowgreen">重启 electron 时，也需要重新打开 devtool</font>
+项目启动时会打开 debug 功能，在 chrome 浏览器地址栏中输入：`chrome://inspect/#devices`，点击 configure，查看是否有 localhost:9229，如果沒有则新增，点击“完成”，页面会出现：`electron/js2c/browser_init`，单击“inspect” 即可打开 debug 控制台。<font color="red">重启 electron 时，也需要重新打开 devtool</font>
 
 项目打包：
 
-<font color="red">打包前，请先安装 [Pandoc](https://github.com/jgm/pandoc/releases)，项目的文档编译需要此工具</font>
+<font color="red">打包前，请先安装 [Pandoc](https://github.com/jgm/pandoc/releases)，并确保 Path 变量包含 Pandoc，项目的 Markdown 文档编译需要此工具</font>
 
 ```bash
 # 打包 windows 平台下的安装包，有三个安装包：zip、exe、msi
@@ -64,7 +64,19 @@ $ build-linux
 $ build-mac
 ```
 
-所有的安装包都在 dist/electron-builder 目录下，<font color="red">由于缺少 mac 机器，因此没有在 mac 平台上进行过测试</font>
+构建完成后，所有的安装包都在 dist/electron-builder 目录下，<font color="red">由于缺少 mac 机器，因此没有在 mac 平台上进行过测试</font>
+
+# 目录结构介绍
+
+| 文件夹                           | 简介                                                         |
+| -------------------------------- | ------------------------------------------------------------ |
+| src/main                         | 主进程的源代码目录                                           |
+| src/render                       | 渲染进程的源代码目录                                         |
+| config                           | 用于构建项目的配置文件，webpack 和 electron-builder 的配置文件都在当中 |
+| builder                          | 项目的构建脚本                                               |
+| docs                             | 软件的使用文档，该文件夹下的 Markdown 文档会被 pandoc 编译成 html，集成到软件包当中 |
+| public                           | GUI 的静态资源，比如 html 文件、图片文件等                   |
+| src/main/hook-template/templates | 该文件夹下的脚本为软件内置的 HOOK 模板                       |
 
 # 软件极限性能测试记录
 

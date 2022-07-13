@@ -70,7 +70,8 @@ async function openMainWindow(loadWin) {
         autoHideMenuBar: true,
         webPreferences: {
             // 是否启用浏览器的开发者工具
-            devTools: config.development, // 渲染进程可调用 nodejs API
+            devTools: config.development,
+            // 渲染进程可调用 nodejs API
             nodeIntegration: true,
             contextIsolation: false,
             preload: path.join(__dirname, "./config/preload.js"),

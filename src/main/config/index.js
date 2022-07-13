@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 /**
  * 初始化应用程序的全局配置参数，参数之间有依赖关系，他们的初始化顺序不可随意改动
  *

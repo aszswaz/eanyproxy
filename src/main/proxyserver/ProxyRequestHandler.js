@@ -1,4 +1,4 @@
-// noinspection SpellCheckingInspection,JSCheckFunctionSignatures,JSUnresolvedVariable,JSUnresolvedFunction,JSIncompatibleTypesComparison,JSVoidFunctionReturnValueUsed,JSUnusedGlobalSymbols
+// noinspection SpellCheckingInspection,JSCheckFunctionSignatures,JSUnresolvedVariable,JSUnresolvedFunction,JSIncompatibleTypesComparison,JSVoidFunctionReturnValueUsed,JSUnusedGlobalSymbols,TypeScriptUMDGlobal
 
 /**
  代理请求处理器
