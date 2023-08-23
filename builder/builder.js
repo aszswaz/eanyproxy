@@ -65,7 +65,7 @@ async function compiler(compress) {
         fs.cp(SOURCE_MAIN_DIR, path.join(APPLICATION_DIR, 'src/main'), {recursive: true})
     }
     // 编译文档
-    execSync("node ./document/ToDoc.js", CHILD_OPTIONS)
+    execSync("node ./docs/ToDoc.js", CHILD_OPTIONS)
 
     // 生成 package
     const packageJson = require(path.join(PROJECT_DIR, "package.json"))

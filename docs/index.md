@@ -48,7 +48,7 @@ eanyproxy 是一个支持 HOOK 的 HTTP/HTTPS 代理程序
 
 **代理端口**：HTTP 代理服务的端口
 
-**HTTPS**：是否启用 HTTPS 代理
+**HTTPS**：是否启用 HTTPS 代理
 
 **Websocket**：是否启用 HTTP Websocket 代理
 
@@ -65,3 +65,7 @@ eanyproxy 是一个支持 HOOK 的 HTTP/HTTPS 代理程序
 [修改请求和响应](./modify-requests-and-responses.md)
 
 [将请求数据输出为 excel 文件](./excel.md)
+
+# 注意事项
+
+<font color="red">如果要抓取 HTTPS 请求，需要把 Anyproxy 的 CA 证书安装到 OS 的 CA 证书库中</font>
